@@ -28,7 +28,6 @@ extern IPAddress gateways;
 extern IPAddress subnets;
 extern IPAddress dns;
 extern std::map<String, String> env_vars;
-
 extern String MODES;
 extern String AP_SSID;
 extern String AP_PSK;
@@ -71,7 +70,10 @@ void setup_wifi();
 void setup_wifiAP();
 
 void Config_server();
+
 void handleIndex(AsyncWebServerRequest *request);
+void handleSaveConfig(AsyncWebServerRequest *request);
+void handleNetworksConfig(AsyncWebServerRequest *request);
 
 /*------------------------------END Function--------------------------*/
 

@@ -1,4 +1,5 @@
 #include "module.h"
+#define DEBUG_ReadENV
 bool skip = false;
 
 int LED_buildin = 13;
@@ -60,7 +61,12 @@ void setup_wifi() {
   Serial.println(WiFi.localIP());
 }
 
-void setup_wifiAP(){
+void setup_wifiAP()
+{
+    if (!WiFi.softAPConfig(ip, gateways, subnets))
+    {
+        Serial.println("AP Config Falled");
+    }
     WiFi.mode(WIFI_AP);
     WiFi.softAP(ssid, password);
 
@@ -123,6 +129,13 @@ server.on("/networks",HTTP_GET, [](AsyncWebServerRequest *request)
 
  server.on("/PP.js",HTTP_GET, [](AsyncWebServerRequest *request)
           {request->send(SPIFFS, "/PP.js"); });
+
+server.on("/saveConfig", HTTP_POST , handleNetworksConfig);  
+
+server.on("/networksConfig", HTTP_POST , handleNetworksConfig);
+
+
+
 
   MDNS.addService("http","tcp",80);
   server.begin();        
@@ -222,7 +235,7 @@ void readEnvFile()
     dnss = env_vars["dns"];
 
 
-#ifdef DEBUG_ReadENV
+#ifdef DEBUG_ReadENVs
     Serial.println("\n*====================================================================*\n*\n*");
     Serial.print("*\tEnergy: ");
     Serial.println(energy_kWh, 6);
@@ -270,7 +283,8 @@ void readEnvFile()
     Serial.print("*\tTCP_eth_enable: ");
     Serial.println(TCP_eth_enable);
     Serial.println("*\n*\n*====================================================================*\n\n\n");
-
+    #endif
+#ifdef DEBUG_ReadENV
     Serial.println("\n*====================================================================*\n*\n*");
     Serial.print("*\tIPAddress ");
     Serial.println(local_IP);
@@ -333,7 +347,7 @@ bool configureNetwork(String IPAddressStr, String gatewayStr, String subnetStr, 
     return true;
 }
 
-void handleNetworksConfig(AsyncWebServerRequest *request)
+void handleNetworksConfig(AsyncWebServerRequest *request) 
 {
     String IPStr, gwStr, subStr, dnsa;
 
@@ -374,4 +388,24 @@ void handleNetworksConfig(AsyncWebServerRequest *request)
 #endif
         request->send(500, "text/plain", "Failed to update configuration");
     }
+}
+void handleSaveConfig(AsyncWebServerRequest *request)
+{
+  String action;
+  if (request->hasParam("action", true))
+  {
+    action = request->getParam("action", true)->value();
+    if (action == "complete")
+    {
+      skip = true;
+      // Perform complete action
+      request->send(200, "text/plain", "Complete action performed.");
+    }
+    else if (action == "restart")
+    {
+      request->send(200, "text/plain", "Restarting ESP.");
+      delay(2000);
+      ESP.restart();
+    }
+  }
 }
