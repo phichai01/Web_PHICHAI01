@@ -127,14 +127,15 @@ server.on("/button",HTTP_GET, [](AsyncWebServerRequest *request)
 server.on("/networks",HTTP_GET, [](AsyncWebServerRequest *request)
           {request->send(SPIFFS, "/networks.html"); });
 
- server.on("/PP.js",HTTP_GET, [](AsyncWebServerRequest *request)
-          {request->send(SPIFFS, "/PP.js"); });
+server.on("/portfolio",HTTP_GET, [](AsyncWebServerRequest *request)
+          {request->send(SPIFFS, "/portfolio.html"); });          
 
 server.on("/saveConfig", HTTP_POST , handleNetworksConfig);  
 
 server.on("/networksConfig", HTTP_POST , handleNetworksConfig);
 
-
+ server.on("/PP.js",HTTP_GET, [](AsyncWebServerRequest *request)
+          {request->send(SPIFFS, "/PP.js"); });
 
 
   MDNS.addService("http","tcp",80);
