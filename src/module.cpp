@@ -137,6 +137,10 @@ server.on("/networksConfig", HTTP_POST , handleNetworksConfig);
  server.on("/PP.js",HTTP_GET, [](AsyncWebServerRequest *request)
           {request->send(SPIFFS, "/PP.js"); });
 
+ server.on("/project",HTTP_GET, [](AsyncWebServerRequest *request)
+          {request->send(SPIFFS, "/project.html");});
+
+
 
   MDNS.addService("http","tcp",80);
   server.begin();        
