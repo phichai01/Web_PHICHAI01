@@ -9,42 +9,59 @@
     <link href="styles.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #000000;
+            color: #ffffff;
             font-family: 'Arial', sans-serif;
         }
         header {
-            background-color: #343a40;
-            color: #ffffff;
+            background-color: #000000;
             padding: 20px 0;
         }
         .nav-link {
             color: #ffffff !important;
+            font-size: 1.2rem;
+            letter-spacing: 0.05rem;
         }
         .nav-link:hover {
-            color: #ffc107 !important;
-        }
-        .form-label {
-            font-weight: bold;
-        }
-        .form-control {
-            border-radius: 0.5rem;
+            color: #ff3e00 !important;
         }
         .btn-primary {
-            background-color: #007bff;
+            background-color: #ff3e00;
             border: none;
-            border-radius: 0.5rem;
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-size: 1.1rem;
         }
         .btn-primary:hover {
-            background-color: #0056b3;
+            background-color: #e63900;
         }
         .container {
-            margin-top: 30px;
-        }
-        .welcome-message {
+            margin-top: 60px;
             text-align: center;
-            font-size: 1.5em;
+        }
+        h1 {
+            font-size: 4rem;
+            font-weight: 700;
             margin-bottom: 20px;
-            color: #007bff;
+        }
+        .form-control {
+            border-radius: 30px;
+            background-color: #333333;
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+        }
+        .form-control:focus {
+            background-color: #444444;
+            box-shadow: none;
+        }
+        footer {
+            background-color: #111111;
+            padding: 20px 0;
+            color: #ffffff;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 40px;
         }
     </style>
     <script src="bscripts.js"></script>
@@ -52,50 +69,22 @@
     <script src="PP.js"></script>
 </head>
 <body>
-    <div class="b-example-divider"></div>
     <div class="container">
         <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-            <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-decoration-none">
-                <img src="images.jpg" alt="Avatar Logo" style="width:40px;" class="rounded-pill">
-            </a>
-            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="/" class="nav-link px-2">Home</a></li>
-                <li><a href="/project" class="nav-link px-2">Random</a></li>
-                <li><a href="/portfolio" class="nav-link px-2">Portfolio</a></li>
+            <ul class="nav col-12 justify-content-center">
+                <li><a href="/" class="nav-link px-4">Home</a></li>
+                <li><a href="/project" class="nav-link px-4">Games</a></li>
+                <li><a href="/portfolio" class="nav-link px-4">Portfolio</a></li>
             </ul>
-            <div class="col-md-3 text-end">
-                <form id="saveForm" action="/saveConfig" method="POST">
-                    <input type="hidden" name="action" id="actionInput" value="">
-                    <button type="button" class="btn btn-outline-success me-2" id="completeButton">Complete</button>
-                    <button type="button" class="btn btn-outline-danger me-2" id="restartButton">Restart</button>
-                </form>
-            </div>
         </header>
+
+        <h1>Welcome to the Phichai website.</h1>
+        <p class="lead">Rajamangala University of Technology Lanna.</p>
+ 
     </div>
 
-    <div class="d-flex justify-content-center align-items-center">
-        <div class="col-md-5">
-            <div class="welcome-message">Welcome to CES-DCMeters!</div>
-            <form id="networksConfig" action="networksConfig" method="POST">
-                <div class="mb-3 mt-3">
-                    <label for="IPAddress" class="form-label">IPAddress:</label>
-                    <input type="text" class="form-control" id="IPAddress" placeholder="Enter IP Address" name="IPAddress" required>
-                </div>
-                <div class="mb-3">
-                    <label for="gateway" class="form-label">Gateway:</label>
-                    <input type="text" class="form-control" id="gateway" placeholder="Enter Gateway" name="gateway" required>
-                </div>
-                <div class="mb-3">
-                    <label for="subnet" class="form-label">Subnet Mask:</label>
-                    <input type="text" class="form-control" id="subnet" placeholder="255.255.255.0" name="subnet" value="255.255.255.0" disabled>
-                </div>
-                <div class="mb-3">
-                    <label for="dns" class="form-label">DNS:</label>
-                    <input type="text" class="form-control" id="dns" placeholder="1.1.1.1" name="dns" value="1.1.1.1" disabled>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-    </div>
+    <footer>
+        &copy; 2024 Rajamangala University of Technology Lanna.
+    </footer>
 </body>
 </html>

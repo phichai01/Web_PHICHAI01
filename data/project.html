@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>สุ่มแบรนด์รองเท้าและสัตว์</title>
+    <title>เกมเติมสีในช่องว่าง</title>
     <style>
         body {
             display: flex;
@@ -17,60 +17,116 @@
         h1 {
             margin-bottom: 20px;
         }
+        #grid {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 10px;
+        }
+        .cell {
+            width: 100px;
+            height: 100px;
+            background-color: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border: 2px solid #333;
+        }
         button {
-            padding: 20px 40px;
-            font-size: 24px;
-            border: none;
-            border-radius: 50%;
+            padding: 10px 20px;
+            font-size: 18px;
+            margin-top: 20px;
             background-color: #4caf50;
             color: white;
+            border: none;
             cursor: pointer;
-            transition: background-color 0.3s;
         }
         button:hover {
             background-color: #45a049;
         }
-        #result {
-            margin-top: 20px;
-            font-size: 20px;
-            text-align: center;
+        #winMessage {
+            font-size: 24px;
+            color: #28a745;
+            display: none;
+        }
+        #errorMessage {
+            font-size: 18px;
+            color: red;
+            display: none;
+        }
+        #instructions {
+            font-size: 14px;
+            color: #333;
+            margin-top: 10px;
         }
     </style>
-    <script>
-        const shoeBrands = [
-            "Nike", "Adidas", "Puma", "Reebok", "Asics",
-            "New Balance", "Converse", "Vans", "Under Armour", "Fila",
-            "Skechers", "Saucony", "Hoka One One", "Brooks", "On Running",
-            "Salomon", "Merrell", "Crocs", "Toms", "Keds"
-        ];
-
-        const animals = [
-            "เสือ", "ช้าง", "หมี", "สิงโต", "นก",
-            "ปลา", "จระเข้", "ม้า", "แมว", "สุนัข",
-            "กระต่าย", "หมู", "แพะ", "วัว", "ไก่",
-            "ยีราฟ", "ช้างน้ำ", "ฮิปโป", "เสือดาว", "กระรอก"
-        ];
-
-        function getRandomItem(array) {
-            const randomIndex = Math.floor(Math.random() * array.length);
-            return array[randomIndex];
-        }
-
-        function getRandomShoeBrand() {
-            const randomBrand = getRandomItem(shoeBrands);
-            document.getElementById("result").innerText = "แบรนด์รองเท้าที่สุ่มได้: " + randomBrand;
-        }
-
-        function getRandomAnimal() {
-            const randomAnimal = getRandomItem(animals);
-            document.getElementById("result").innerText = "สัตว์ที่สุ่มได้: " + randomAnimal;
-        }
-    </script>
 </head>
 <body>
-    <h1>สุ่มแบรนด์รองเท้าและสัตว์</h1>
-    <button onclick="getRandomShoeBrand()">สุ่มแบรนด์รองเท้า</button>
-    <button onclick="getRandomAnimal()">สุ่มสัตว์</button>
-    <p id="result"></p>
+
+    <h1>เกมเติมสีในช่องว่าง</h1>
+    <div id="grid">
+        <!-- 9 cells -->
+        <div class="cell" data-color=""></div>
+        <div class="cell" data-color=""></div>
+        <div class="cell" data-color=""></div>
+        <div class="cell" data-color=""></div>
+        <div class="cell" data-color=""></div>
+        <div class="cell" data-color=""></div>
+        <div class="cell" data-color=""></div>
+        <div class="cell" data-color=""></div>
+        <div class="cell" data-color=""></div>
+    </div>
+
+    <div id="colorPicker">
+        <button onclick="selectColor('red')" style="background-color: red;">เลือกสีแดง</button>
+        <button onclick="selectColor('green')" style="background-color: green;">เลือกสีเขียว</button>
+        <button onclick="selectColor('yellow')" style="background-color: yellow;">เลือกสีเหลือง</button>
+    </div>
+
+    <p id="winMessage">คุณเติมสีสำเร็จแล้ว! กำลังนำคุณไปยังหน้าถัดไป...</p>
+    <p id="errorMessage">คุณทำผิด! กรุณาเติมสีเดียวกันทั้งหมด</p>
+
+    <p id="instructions">วิธีการเล่น: เลือกสีที่คุณต้องการเติมในตาราง จากนั้นเติมสีในช่องว่างให้ครบโดยใช้เพียงสีเดียวเท่านั้น</p>
+
+    <script>
+        let selectedColor = null;
+        const cells = document.querySelectorAll('.cell');
+        let usedColor = null; // เก็บสีที่ใช้ครั้งแรกเพื่อป้องกันการปนสี
+
+        function selectColor(color) {
+            selectedColor = color;
+            if (!usedColor) {
+                usedColor = color; // เก็บสีแรกที่เลือก
+            }
+        }
+
+        cells.forEach(cell => {
+            cell.addEventListener('click', function() {
+                if (selectedColor) {
+                    if (!usedColor || selectedColor === usedColor) {
+                        cell.style.backgroundColor = selectedColor;
+                        cell.setAttribute('data-color', selectedColor);
+                        checkWin();
+                    } else {
+                        document.getElementById('errorMessage').style.display = 'block'; // แสดงข้อความแจ้งเตือน
+                    }
+                }
+            });
+        });
+
+        function checkWin() {
+            const colors = Array.from(cells).map(cell => cell.getAttribute('data-color'));
+            const isComplete = colors.every(color => color === usedColor && color !== "");
+
+            if (isComplete) {
+                document.getElementById('winMessage').style.display = 'block';
+                setTimeout(() => {
+                    window.location.href = "http://192.168.31.158"; // Redirect after winning
+                }, 2000); // Delay 2 seconds before redirecting
+            }
+        }
+    </script>
+
 </body>
 </html>

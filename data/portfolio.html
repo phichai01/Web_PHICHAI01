@@ -1,60 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap 5 Example</title>
+  <title>ประวัติส่วนตัว</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="styles.css" rel="stylesheet">
-  <script src="bscripts.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    .bg-header {
+      background-image: url('header-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+    h1, h3 {
+      font-weight: bold;
+    }
+    .section-title {
+      margin-top: 30px;
+      color: #007bff;
+      text-transform: uppercase;
+      border-bottom: 3px solid #007bff;
+      padding-bottom: 10px;
+    }
+    .container {
+      margin-top: 40px;
+    }
+    .skills, .experience, .education {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+    p {
+      font-size: 1.1rem;
+    }
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      margin-top: 40px;
+    }
+  </style>
 </head>
 <body>
 
-    
-    <div class="container-fluid p-5 bg-success text-white text-center">
-      <h1>ประวัติส่วนตัว</h1>
-    </div>
+  <!-- Header -->
+  <div class="container-fluid p-5 bg-header text-center">
+    <h1>ประวัติส่วนตัว</h1>
+  </div>
+
+  <!-- Content Section -->
+  <div class="container">
+    <div class="row">
       
-    <div class="container mt-5">
-      <div class="row">
-        <div class="col-sm-4">
-          <h3>ประวัติการศึกษา</h3>
-          <p>2023-ปัจจุบัน ปริญญาตรีสาขาหุ่นยนต์และระบบอัตโนมัติ|มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา</p>
-          <p>2022 ประกาศนียบัตรวิชาชีพชั้นสูงสาขาอิเล็กทรอนิกส์|วิทยาลัยเทคนิคแม่สอด</p>
-          <p>2020 ประกาศนียบัตรวิชาชีพระดับสาขาอิเล็กทรอนิกส์|วิทยาลัยเทคนิคแม่สอด</p>
-          <h3>ทักษะด้านคอมพิวเตอร์</h3>
-          <p>Solidwork</p>
-          <p>EasyEAD</p>
-           <p>Knowledgeable in electronics.</p>
-          <p>RobotStudio Suite.
-    </p>
-        </div>
-        <div class="col-sm-4">
-          <h3>ประสบการณ์การทำงาน</h3>
-          <p>2022 ทำงานด้านการติดตั้ง/ซ่อมแซมอุปกรณ์ไฟฟ้าที่ |ร้านคอมพิวเตอร์และบริการ</p>
-          <p>2020 ทำงานซ่อมแซมอุปกรณ์ไฟฟ้าที่ |ร้านคอมพิวเตอร์และบริการ</p>
-          <h3>การฝึกอบรม</h3>
-          <p>การสอบมาตรฐานทักษะ CNC ระดับ 1</p>
-          <p>การสอบมาตรฐานทักษะ ABB ระดับ  1</p>
-          <p>เข้าร่วมการฝึกอบรมการถอดประกอบหุ่นยนต์</p>
-          <p>อบรมหลักสูตรมาตรวิทยา</p>
-        </div>
-        <div class="col-sm-4">
-          <h3>ทักษะ</h3>        
-          <p>ทักษะด้านภาษา :</p>
-          <p>ภาษาไทย : สื่อสารได้</p>
-          <p>ภาษาเมียนมา : สื่อสารได้</p>
-          <p>ภาษากะเหรี่ยง : สื่อสารได้</p>
-          <h3>ทักษะ</h3> 
-            <div class="col-sm-4">
-             <p>ทักษะด้านภาษา :</p>
-          <p>สามารถทำงานเป็นทีมได้ดี</p>
-          <p>สามารถปรับตัวต่อการเปลี่ยนแปลงได้ดี</p>
-          <p>มีมนุษยสัมพันธ์ที่ดี</p>
-          <p>รอบคอบ ใส่ใจในรายละเอียด และมุ่งมั่นในการทำงาน</p>
+      <!-- Education Section -->
+      <div class="col-lg-4">
+        <div class="education">
+          <h3 class="section-title">ประวัติการศึกษา</h3>
+          <p><strong>2023-ปัจจุบัน:</strong> ปริญญาตรีสาขาหุ่นยนต์และระบบอัตโนมัติ | มหาวิทยาลัยเทคโนโลยีราชมงคลล้านนา</p>
+          <p><strong>2022:</strong> ประกาศนียบัตรวิชาชีพชั้นสูงสาขาอิเล็กทรอนิกส์ | วิทยาลัยเทคนิคแม่สอด</p>
+          <p><strong>2020:</strong> ประกาศนียบัตรวิชาชีพสาขาอิเล็กทรอนิกส์ | วิทยาลัยเทคนิคแม่สอด</p>
         </div>
       </div>
+
+      <!-- Experience Section -->
+      <div class="col-lg-4">
+        <div class="experience">
+          <h3 class="section-title">ประสบการณ์การทำงาน</h3>
+          <p><strong>2022:</strong> ติดตั้ง/ซ่อมแซมอุปกรณ์ไฟฟ้า | ร้านคอมพิวเตอร์และบริการ</p>
+          <p><strong>2020:</strong> ซ่อมแซมอุปกรณ์ไฟฟ้า | ร้านคอมพิวเตอร์และบริการ</p>
+          <h3 class="section-title">การฝึกอบรม</h3>
+          <p>สอบมาตรฐานทักษะ CNC ระดับ 1</p>
+          <p>สอบมาตรฐานทักษะ ABB ระดับ 1</p>
+          <p>อบรมการถอดประกอบหุ่นยนต์</p>
+          <p>อบรมมาตรวิทยา</p>
+        </div>
+      </div>
+
+      <!-- Skills Section -->
+      <div class="col-lg-4">
+        <div class="skills">
+          <h3 class="section-title">ทักษะ</h3>
+          <p><strong>ทักษะด้านภาษา:</strong></p>
+          <ul>
+            <li>ภาษาไทย: สื่อสารได้</li>
+            <li>ภาษาเมียนมา: สื่อสารได้</li>
+            <li>ภาษากะเหรี่ยง: สื่อสารได้</li>
+          </ul>
+          <p><strong>ทักษะด้านคอมพิวเตอร์:</strong></p>
+          <ul>
+            <li>Solidworks</li>
+            <li>EasyEAD</li>
+            <li>RobotStudio Suite</li>
+          </ul>
+          <p><strong>ทักษะด้านมนุษยสัมพันธ์:</strong></p>
+          <ul>
+            <li>ทำงานเป็นทีมได้ดี</li>
+            <li>มีความยืดหยุ่นและปรับตัวได้ดี</li>
+            <li>มีมนุษยสัมพันธ์ที่ดี</li>
+            <li>ละเอียด รอบคอบ มุ่งมั่นในการทำงาน</li>
+          </ul>
+        </div>
+      </div>
+      
     </div>
-    
-    </body>
-    </html>
-    
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2024 ประวัติส่วนตัว. All rights reserved.
+  </footer>
+
+</body>
+</html>

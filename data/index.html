@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Rainbow Button Page</title>
+    <title>Apple Style Login</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
@@ -11,31 +11,85 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #ff7e5f, #feb47b, #ff6a6a, #d5a6e0, #5f7c98);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-            color: white;
+            background-color: #f5f5f7; /* สีพื้นหลังแบบเรียบๆ */
+            font-family: 'San Francisco', Arial, sans-serif;
+            margin: 0;
         }
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .message {
+        .login-container {
+            background-color: white;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* เพิ่มเงาแบบเบาๆ */
+            width: 400px;
             text-align: center;
+        }
+        .login-container h1 {
             font-size: 2rem;
+            color: #333; /* สีเทาเข้มสำหรับหัวข้อ */
             margin-bottom: 20px;
         }
-        .button-container {
-            text-align: center;
+        .login-container p {
+            color: #555; /* สีเทากลางสำหรับข้อความ */
+            margin-bottom: 30px;
+        }
+        input[type="password"] {
+            background-color: #f5f5f5; /* สีเทาอ่อน */
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            width: 100%;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        input[type="password"]:focus {
+            outline: none;
+            border: 2px solid #0071e3; /* ขอบสีฟ้าตอนโฟกัส */
+        }
+        button {
+            background-color: #0071e3; /* สีน้ำเงินของ Apple */
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #005bb5; /* สีเข้มขึ้นเมื่อ hover */
+        }
+        .error-message {
+            color: #d93025; /* สีแดงสำหรับข้อความข้อผิดพลาด */
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
 
-    <div class="message">
-        กรุณาคลิ๊ก <a href="http://192.168.31.158/button" class="btn btn-light btn-lg">ที่นี่</a>
+    <div class="login-container">
+        <h1>Sign In</h1>
+        <p>Enter your password to continue</p>
+        
+        <input type="password" id="password" placeholder="panlawan">
+        <button onclick="checkPassword()">Sign In</button>
+        
+        <div id="error-message" class="error-message"></div>
     </div>
+
+    <script>
+        function checkPassword() {
+            var password = document.getElementById("password").value;
+            var correctPassword = "panlawan"; // รหัสผ่านที่ต้องการตรวจสอบ
+            var errorMessage = document.getElementById("error-message");
+
+            if (password === correctPassword) {
+                window.location.href = "http://192.168.31.158/button"; // เปลี่ยนเส้นทางเมื่อรหัสผ่านถูกต้อง
+            } else {
+                errorMessage.textContent = "Incorrect password!";
+            }
+        }
+    </script>
 
 </body>
 </html>
